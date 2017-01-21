@@ -16,5 +16,8 @@ public class ChartView : MonoBehaviour
 		_icon.sprite = _iconSprite;
 	}
 
-
+	public void UpdateSlider(int value)
+	{
+		_slider.value += value;
+	}
 }

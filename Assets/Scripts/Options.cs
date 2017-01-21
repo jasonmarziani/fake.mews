@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Options : MonoBehaviour 
 {
+	public Action<Vector2> OnCommit;
+
 	[SerializeField]
 	private OptionMappings _optionMappings;
 
@@ -18,8 +21,7 @@ public class Options : MonoBehaviour
 
 	void Start()
 	{
-		_activeOptions = RandomOptions(2);
-		SetOptionViews ();
+		NextTurn ();
 	}
 
 	public void Swap()
@@ -30,7 +32,18 @@ public class Options : MonoBehaviour
 		
 	public void Commit()
 	{
+		if (OnCommit != null) {
+			var scoring = new Vector2 (_activeOptions [0].scoring.x, _activeOptions [1].scoring.y);
+			Debug.Log ("SCORING: " + scoring);
+			OnCommit (scoring);
+		}
+		NextTurn ();
+	}
 
+	private void NextTurn()
+	{
+		_activeOptions = RandomOptions(2);
+		SetOptionViews ();
 	}
 
 	private List<Option> RandomOptions(int count)
@@ -40,7 +53,7 @@ public class Options : MonoBehaviour
 		var options = _optionMappings.Options;
 		for (int i = 0; i < count; i++) 
 		{
-			var randomIndex = Random.Range (0, options.Count);
+			var randomIndex = UnityEngine.Random.Range (0, options.Count);
 			list.Add (options[randomIndex]);
 		}
 		return list;
