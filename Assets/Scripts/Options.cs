@@ -21,7 +21,12 @@ public class Options : MonoBehaviour
 
 	void Start()
 	{
-		NextTurn ();
+		StartGame();
+	}
+
+	public void StartGame()
+	{
+		NextTurn();
 	}
 
 	public void Swap()
@@ -34,16 +39,15 @@ public class Options : MonoBehaviour
 	{
 		if (OnCommit != null) {
 			var scoring = new Vector2 (_activeOptions [0].scoring.x, _activeOptions [1].scoring.y);
-			Debug.Log ("SCORING: " + scoring);
 			OnCommit (scoring);
 		}
-		NextTurn ();
+		NextTurn();
 	}
 
 	private void NextTurn()
 	{
 		_activeOptions = RandomOptions(2);
-		SetOptionViews ();
+		SetOptionViews();
 	}
 
 	private List<Option> RandomOptions(int count)

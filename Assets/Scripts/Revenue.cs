@@ -14,6 +14,11 @@ public class Revenue : MonoBehaviour
 	[SerializeField]
 	private int _revenue;
 
+	public int Value
+	{
+		get { return _revenue; }
+	}
+
 	void Start()
 	{
 		_options.OnCommit += OnCommit;
@@ -33,6 +38,12 @@ public class Revenue : MonoBehaviour
 	public void AddRevenue(int value)
 	{
 		_revenue += (value * _multiplier);
+		Render();
+	}
+
+	public void Reset()
+	{
+		_revenue = 0;
 		Render();
 	}
 

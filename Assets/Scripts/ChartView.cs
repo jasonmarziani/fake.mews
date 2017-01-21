@@ -11,6 +11,11 @@ public class ChartView : MonoBehaviour
 	[SerializeField]
 	private Slider _slider;
 
+	public Slider Slider
+	{
+		get { return _slider; }
+	}
+
 	void Start () 
 	{
 		_icon.sprite = _iconSprite;
@@ -19,5 +24,10 @@ public class ChartView : MonoBehaviour
 	public void UpdateSlider(int value)
 	{
 		_slider.value += value;
+	}
+
+	public void Reset()
+	{
+		_slider.value = 0;
 	}
 }
