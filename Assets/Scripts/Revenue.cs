@@ -12,7 +12,12 @@ public class Revenue : MonoBehaviour
 	[SerializeField]
 	private Text _text;
 	[SerializeField]
+	private Text _highlightText;
+	[SerializeField]
 	private int _revenue;
+	[SerializeField]
+	private int _highlight;
+
 
 	public int Value
 	{
@@ -37,18 +42,21 @@ public class Revenue : MonoBehaviour
 
 	public void AddRevenue(int value)
 	{
-		_revenue += (value * _multiplier);
+		_highlight = value * _multiplier;
+		_revenue += _highlight;
 		Render();
 	}
 
 	public void Reset()
 	{
 		_revenue = 0;
+		_highlight = 0;
 		Render();
 	}
 
 	private void Render()
 	{
 		_text.text = "$" + _revenue.ToString();
+		_highlightText.text = "+$" + _highlight.ToString();
 	}
 }

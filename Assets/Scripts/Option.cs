@@ -7,4 +7,5 @@ public class Option
 {
 	public string headline;
 	public Vector2 scoring; // x = cats, y = dogs
+	public int staleness;
 }

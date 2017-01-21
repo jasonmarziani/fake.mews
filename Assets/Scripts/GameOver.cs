@@ -20,7 +20,7 @@ public class GameOver : MonoBehaviour
 	}
 
 	public void Activate(string reason, string revenue)
-	{
+	{		
 		SetActive(true);
 		_reasonText.text = reason;
 		_revenueText.text = revenue;

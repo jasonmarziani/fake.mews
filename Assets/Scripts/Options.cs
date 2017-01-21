@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -19,6 +20,9 @@ public class Options : MonoBehaviour
 	[SerializeField]
 	private OptionView _optionView2;
 
+	[SerializeField]
+	private int _stalenessFactor;
+
 	void Start()
 	{
 		StartGame();
@@ -26,6 +30,8 @@ public class Options : MonoBehaviour
 
 	public void StartGame()
 	{
+		var options = _optionMappings.Options;
+		options.ForEach(opt => opt.staleness = 0);
 		NextTurn();
 	}
 
@@ -52,16 +58,12 @@ public class Options : MonoBehaviour
 
 	private List<Option> RandomOptions(int count)
 	{
-		// TODO: FIX FOR REPETITION
-		var list = new List<Option>();
 		var options = _optionMappings.Options;
-		for (int i = 0; i < count; i++) 
-		{
-			var randomIndex = UnityEngine.Random.Range (0, options.Count);
-			list.Add (options[randomIndex]);
-		}
-		return list;
-
+		var shuffled = options.OrderBy(a => Guid.NewGuid()).ToList();
+		var selected = shuffled.Where(opt => opt.staleness <= 0).Take(count).ToList();
+		selected.ForEach(opt => opt.staleness = _stalenessFactor);
+		options.ForEach(opt => Mathf.Max(opt.staleness--, 0));
+		return selected;
 	}
 
 	private void SetOptionViews()

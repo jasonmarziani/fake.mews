@@ -27,12 +27,13 @@ public class Game : MonoBehaviour
 		Debug.Log ("CheckGameState: " + index);
 		if (index.x == 0 || index.y == 0) 
 		{
-			GameOver ();
+			StartCoroutine(GameOver());
 		}
 	}
 
-	private void GameOver()
+	private IEnumerator GameOver()
 	{
+		yield return new WaitForSeconds (0.1f);
 		var reason = "Here's the reason";
 		var rev = "$"+_revenue.Value.ToString();
 		_gameOver.Activate(reason, rev);
