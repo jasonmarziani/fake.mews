@@ -53,7 +53,6 @@ public class OptionsPanel : MonoBehaviour
 		var inMover = _next.GetComponent<MoveRectTransform> ();
 		inMover.MoveTo(Vector2.zero);
 		_active = _next;
-
 	}
 
 	public void OnCommit(Vector2 scoring)
