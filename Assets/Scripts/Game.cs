@@ -14,6 +14,8 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	private Revenue _revenue;
 
+	private string[] _reasons = new string[]{"Here's the reason."};
+
 	void Start () 
 	{
 		_chartIndex.OnChartIndexUpdate += CheckGameState;
@@ -44,7 +46,7 @@ public class Game : MonoBehaviour
 	private IEnumerator GameOver()
 	{
 		yield return new WaitForSeconds (0.1f);
-		var reason = "Here's the reason";
+		var reason = _reasons[0];
 		var rev = "$"+_revenue.Value.ToString();
 		_gameOver.Activate(reason, rev);
 	}

@@ -7,6 +7,8 @@ public class OptionView : MonoBehaviour
 
 	[SerializeField]
 	private Text _headline;
+	[SerializeField]
+	private Image _photo;
 
 
 	[SerializeField]
@@ -24,6 +26,7 @@ public class OptionView : MonoBehaviour
 	private void Render()
 	{
 		_headline.text = _option.headline;
+		_photo.sprite = _option.sprite;
 	}
 
 }
