@@ -7,8 +7,9 @@ using System.Collections.Generic;
 public class Options : MonoBehaviour 
 {
 	public Action<Vector2> OnCommit;
-
+	[HideInInspector]
 	public OptionMappings optionMappings;
+	[HideInInspector]
 	public string revenue;
 
 	[HideInInspector]
@@ -41,7 +42,6 @@ public class Options : MonoBehaviour
 			var scoring = new Vector2 (_activeOptions [0].scoring.x, _activeOptions [1].scoring.y);
 			OnCommit (scoring);
 		}
-		//MakeTurn();
 	}
 
 	public void MakeTurn()
