@@ -19,7 +19,6 @@ public class Game : MonoBehaviour
 	void Start () 
 	{
 		_chartIndex.OnChartIndexUpdate += CheckGameState;
-		StartGame ();
 	}
 
 	void OnDestroy()
@@ -36,9 +35,8 @@ public class Game : MonoBehaviour
 		}
 	}
 
-	private void StartGame()
+	public void StartGame()
 	{
-		Debug.Log ("StartGame");
 		_optionsPanel.ClearAll ();
 		_optionsPanel.Animate ();
 	}

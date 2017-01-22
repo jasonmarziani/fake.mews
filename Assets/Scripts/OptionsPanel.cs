@@ -17,6 +17,10 @@ public class OptionsPanel : MonoBehaviour
 	[SerializeField]
 	private GameObject _optionsPrefab;
 	[SerializeField]
+	private GameObject _startPrefab;
+	[SerializeField]
+	private GameObject _gameoverPrefab;
+	[SerializeField]
 	private GameObject _active;
 	[SerializeField]
 	private GameObject _next;
