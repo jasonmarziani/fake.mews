@@ -10,15 +10,25 @@ public class ChartView : MonoBehaviour
 	private Sprite _iconSprite;
 	[SerializeField]
 	private Slider _slider;
+	[SerializeField]
+	private Image _background;
+	[SerializeField]
+	private Color _color;
 
 	public Slider Slider
 	{
 		get { return _slider; }
 	}
 
+	public Color Color
+	{
+		get { return _color; }
+	}
+
 	void Start () 
 	{
 		if(_icon != null && _iconSprite != null) _icon.sprite = _iconSprite;
+
 	}
 
 	public void UpdateSlider(int value)

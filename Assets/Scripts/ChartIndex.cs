@@ -7,7 +7,7 @@ public class ChartIndex : MonoBehaviour
 	public Action<Vector2> OnChartIndexUpdate;
 
 	[SerializeField]
-	private Options _options;
+	private OptionsPanel _optionsPanel;
 	[SerializeField]
 	private ChartView _chartX;
 	[SerializeField]
@@ -24,12 +24,12 @@ public class ChartIndex : MonoBehaviour
 
 	void Start () 
 	{
-		_options.OnCommit += OnCommit;
+		_optionsPanel.OnSelection += OnSelection;
 	}
 
 	void OnDestroy()
 	{
-		_options.OnCommit -= OnCommit;
+		_optionsPanel.OnSelection -= OnSelection;
 	}
 		
 	public void Reset()
@@ -38,7 +38,7 @@ public class ChartIndex : MonoBehaviour
 		_chartY.Reset();
 	}
 
-	private void OnCommit(Vector2 score)
+	private void OnSelection(Vector2 score)
 	{
 		_chartX.UpdateSlider((int)score.x);
 		_chartY.UpdateSlider((int)score.y);

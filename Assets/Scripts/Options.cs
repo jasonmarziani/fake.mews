@@ -8,8 +8,11 @@ public class Options : MonoBehaviour
 {
 	public Action<Vector2> OnCommit;
 
-	[SerializeField]
-	private OptionMappings _optionMappings;
+	public OptionMappings optionMappings;
+	public string revenue;
+
+	[HideInInspector]
+	private OptionsPanel _optionsPanel;
 
 	[SerializeField]
 	private List<Option> _activeOptions;
@@ -21,19 +24,10 @@ public class Options : MonoBehaviour
 	private OptionView _optionView2;
 
 	[SerializeField]
+	private RevenueView _revenueView;
+
+	[SerializeField]
 	private int _stalenessFactor;
-
-	void Start()
-	{
-		StartGame();
-	}
-
-	public void StartGame()
-	{
-		var options = _optionMappings.Options;
-		options.ForEach(opt => opt.staleness = 0);
-		NextTurn();
-	}
 
 	public void Swap()
 	{
@@ -47,18 +41,22 @@ public class Options : MonoBehaviour
 			var scoring = new Vector2 (_activeOptions [0].scoring.x, _activeOptions [1].scoring.y);
 			OnCommit (scoring);
 		}
-		NextTurn();
+		//MakeTurn();
 	}
 
-	private void NextTurn()
+	public void MakeTurn()
 	{
 		_activeOptions = RandomOptions(2);
+		_revenueView.Render(revenue);
 		SetOptionViews();
 	}
 
 	private List<Option> RandomOptions(int count)
 	{
-		var options = _optionMappings.Options;
+		if (optionMappings == null) {
+			Debug.LogWarning ("NO MAPPINGS, NO OPTIONS.");
+		}
+		var options = optionMappings.Options;
 		var shuffled = options.OrderBy(a => Guid.NewGuid()).ToList();
 		var selected = shuffled.Where(opt => opt.staleness <= 0).Take(count).ToList();
 		selected.ForEach(opt => opt.staleness = _stalenessFactor);

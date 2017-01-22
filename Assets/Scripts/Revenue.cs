@@ -1,18 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+
 using System.Collections;
 
 public class Revenue : MonoBehaviour 
 {
 	[SerializeField]
-	private Options _options;
+	private OptionsPanel _optionsPanel;
 
 	[SerializeField]
 	private int _multiplier = 1;
-	[SerializeField]
-	private Text _text;
-	[SerializeField]
-	private Text _highlightText;
 	[SerializeField]
 	private int _revenue;
 	[SerializeField]
@@ -26,15 +22,15 @@ public class Revenue : MonoBehaviour
 
 	void Start()
 	{
-		_options.OnCommit += OnCommit;
+		_optionsPanel.OnSelection += OnSelection;
 	}
 
 	void OnDestroy()
 	{
-		_options.OnCommit -= OnCommit;
+		_optionsPanel.OnSelection -= OnSelection;
 	}
 
-	public void OnCommit(Vector2 score)
+	public void OnSelection(Vector2 score)
 	{
 		var total =(int)(Mathf.Abs(score.x) + Mathf.Abs(score.y));
 		AddRevenue(total);
@@ -44,19 +40,11 @@ public class Revenue : MonoBehaviour
 	{
 		_highlight = value * _multiplier;
 		_revenue += _highlight;
-		Render();
 	}
 
 	public void Reset()
 	{
 		_revenue = 0;
 		_highlight = 0;
-		Render();
-	}
-
-	private void Render()
-	{
-		_text.text = "$" + _revenue.ToString();
-		_highlightText.text = "+$" + _highlight.ToString();
 	}
 }

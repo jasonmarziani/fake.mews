@@ -4,6 +4,8 @@ using System.Collections;
 public class Game : MonoBehaviour 
 {
 	[SerializeField]
+	private OptionsPanel _optionsPanel;
+	[SerializeField]
 	private Options _options;
 	[SerializeField]
 	private ChartIndex _chartIndex;
@@ -15,6 +17,7 @@ public class Game : MonoBehaviour
 	void Start () 
 	{
 		_chartIndex.OnChartIndexUpdate += CheckGameState;
+		StartGame ();
 	}
 
 	void OnDestroy()
@@ -31,6 +34,13 @@ public class Game : MonoBehaviour
 		}
 	}
 
+	private void StartGame()
+	{
+		Debug.Log ("StartGame");
+		_optionsPanel.ClearAll ();
+		_optionsPanel.Animate ();
+	}
+
 	private IEnumerator GameOver()
 	{
 		yield return new WaitForSeconds (0.1f);
@@ -45,6 +55,6 @@ public class Game : MonoBehaviour
 		_gameOver.Reset();
 		_chartIndex.Reset();
 		_revenue.Reset();
-		_options.StartGame();
+		StartGame ();
 	}
 }
