@@ -6,6 +6,13 @@ import './App.css';
 import './Game.css';
 
 class App extends Component {
+  getInitialState()
+  {
+    return {
+      items: []
+    };
+  }
+  
   render() {
     return (
       <div className="App">
