@@ -5,6 +5,15 @@ import SocialPost from './SocialPost'
 import './App.css';
 import './Game.css';
 
+
+/*
+TODO:
+Create a pool to pick random headlines from.
+Swap + Select functionality.
+Create social posts on the columns when selected.
+Pass title into the social post.
+*/
+
 class App extends Component {
   getInitialState()
   {
@@ -12,7 +21,7 @@ class App extends Component {
       items: []
     };
   }
-  
+
   render() {
     return (
       <div className="App">
