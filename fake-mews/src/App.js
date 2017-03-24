@@ -11,14 +11,17 @@ TODO:
 Create a pool to pick random headlines from.
 Swap + Select functionality.
 Create social posts on the columns when selected.
-Pass title into the social post.
+- using map and state
 */
+
+//const titles = ["title 1", "title 2", "title 3", "title 4"];
 
 class App extends Component {
   getInitialState()
   {
     return {
-      items: []
+      leftPosts: [],
+      rightPosts: []
     };
   }
 
@@ -32,21 +35,21 @@ class App extends Component {
         <Grid>
         <Row>
         <Column width="1/3">
-          <SocialPost /><br/>
-          <SocialPost /><br/>
-          <SocialPost /><br/>
-          <SocialPost /><br/>
+          <SocialPost title="some title" /><br/>
+          <SocialPost title="some title 2"/><br/>
+          <SocialPost title="some title 3" /><br/>
+          <SocialPost title="some title 4" /><br/>
         </Column>
         <Column width="1/3">
-          <SocialPost /><br/>
+          <SocialPost title="some title" /><br/>
           <p>swap choose</p>
-          <SocialPost /><br/>
+          <SocialPost title="some title" /><br/>
         </Column>
         <Column width="1/3">
-          <SocialPost /><br/>
-          <SocialPost /><br/>
-          <SocialPost /><br/>
-          <SocialPost /><br/>
+          <SocialPost title="some title" /><br/>
+          <SocialPost title="some title" /><br/>
+          <SocialPost title="some title" /><br/>
+          <SocialPost title="some title" /><br/>
         </Column>
       </Row>
     </Grid>
