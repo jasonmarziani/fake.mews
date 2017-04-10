@@ -2,10 +2,51 @@
   background-color: #EAEAEA;
   color: white;
   height: 150px;
+  margin:10px 0;
+  text-align: left;
   padding: 10px;
+  animation: Post-bounce-in 300ms;
 }
 
 .social-post-img
 {
+  background-position: center center;
+  background-size: cover;
+  border: 1px #EEE solid;
+  height: 80%;
   overflow: hidden;
+}
+
+.social-post-title
+{
+  width:100%;
+}
+
+.meter{
+  background-color: #EAEAEA;
+  height: 150px;
+}
+
+.timer
+{
+  background-color:red;
+  color: white;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes Post-bounce-in
+{
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60%{
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100%{
+    transform:scale(1);
+  }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Grid, Row, Column} from 'react-cellblock';
+import Timer from './Timer';
 
 class SwapAndChoose extends Component
 {
@@ -8,11 +9,11 @@ class SwapAndChoose extends Component
     return (
       <Grid>
       <Row>
-      <Column width="1/5" />
-      <Column width="1/5"><button onClick={this.props.onSwap}>Swap</button></Column>
-      <Column width="1/5" />
-      <Column width="1/5"><button onClick={this.props.onCommit}>Commit</button></Column>
-      <Column width="1/5" />
+      <Column width="1/8" />
+      <Column width="1/4"><button onClick={this.props.onSwap}>Swap</button></Column>
+      <Column width="1/4" ><Timer /></Column>
+      <Column width="1/4"><button onClick={this.props.onCommit}>Commit</button></Column>
+      <Column width="1/8" />
       </Row>
       </Grid>
     );

@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 
 class SocialPost extends Component {
 
-  // PROPS CHANGE EVERY RENDER. MUST USE STATE FOR COLORS
+  // TODO: Responsize images
+  // Activity (Likes, smiles, comments)
 
   render() {
-    return (
-      <div className="social-post" style={{backgroundColor:this.props.color}}>
-        <p>{this.props.title}</p>
-        {/* <p><img src="http://thecatapi.com/api/images/get?format=src&type=jpg" class="social-post-img" alt="cats"/></p> */}
-      </div>
+    console.log(this.props.post.color);
 
+    return (
+      <div className="social-post" style={{backgroundColor:this.props.post.color}}>
+        <div className="social-post-title">{this.props.post.title}</div>
+        <div className="social-post-img" style={{backgroundImage:'url(' + this.props.post.img + ')',}}></div>
+      </div>
     );
   }
 }
