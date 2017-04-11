@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Grid, Row, Column} from 'react-cellblock';
 import Timer from './Timer';
 
+// TODO: Pass in timer?
+
 class SwapAndChoose extends Component
 {
 
