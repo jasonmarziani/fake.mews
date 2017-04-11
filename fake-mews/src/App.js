@@ -42,25 +42,37 @@ class App extends Component {
     };
   }
 
-  handleCommit = () =>{
-    var choice0 = this.state.choices[0];
-    var choice1 = this.state.choices[1];
-    var options = [...this.props.posts];
-    this.shuffle(options);
-    var nextChoice0 = options[0];
-    var nextChoice1 = options[1];
+  handleCommit = (commits) =>{
+    var choice0 = commits[0];
+    var choice1 = commits[1];
     var scoreRight = this.state.scoreRight+choice0.values.right;
     var scoreLeft = this.state.scoreLeft+choice1.values.left;
 
-    // TODO: Check score states against game objectives
+    if(this.checkEndgame(scoreRight, scoreLeft))
+    {
+      console.log("GAME OVER");
+      return;
+    }
+
+    var options = [...this.props.posts];
+    this.shuffle(options);
+    var choices = [options[0], options[1]];
 
     this.setState(prevState => ({
       leftPosts: [choice0, ...this.state.leftPosts],
       rightPosts: [choice1, ...this.state.rightPosts],
-      choices:[nextChoice0, nextChoice1],
+      choices:choices,
       scoreLeft:scoreLeft,
       scoreRight:scoreRight
     }));
+  }
+
+  checkEndgame(scoreRight, scoreLeft)
+  {
+    var min = this.props.endgame.min;
+    var max = this.props.endgame.max;
+    if(scoreLeft <= min || scoreLeft >= max || scoreRight <= min || scoreRight >= max) return true;
+    return false;
   }
 
   generateKey(){
@@ -79,6 +91,9 @@ class App extends Component {
   }
 
   render() {
+    console.log("----* "+this.state.choices[0].title);
+    console.log("----** "+this.state.choices[1].title);
+
     return (
       <div className="App">
         <div className="App-header">
@@ -107,11 +122,11 @@ class App extends Component {
         <Grid>
           <Row>
           <Column width="1/3">
-            <Meter value={this.state.scoreLeft} type="Cat" />
+            <Meter value={this.state.scoreLeft} type="cat" />
           </Column>
           <Column width="1/3"></Column>
           <Column width="1/3">
-            <Meter value={this.state.scoreRight} type="Dog" />
+            <Meter value={this.state.scoreRight} type="dog" />
           </Column>
           </Row>
         </Grid>

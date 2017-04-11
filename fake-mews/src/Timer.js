@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 
 class Timer extends Component
 {
-  // TODO: STATE FOR TIMER?
-  // Bring in game framework and listen for update callbacks
-  // How to propigate a change back up to App.js
-  // Or does app need to own the timer, and push the time prop down?
+  // TODO: Timer with complete callback.
 
   render() {
     return (

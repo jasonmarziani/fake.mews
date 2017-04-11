@@ -6,8 +6,6 @@ class SocialPost extends Component {
   // Activity (Likes, smiles, comments)
 
   render() {
-    console.log(this.props.post.color);
-
     return (
       <div className="social-post" style={{backgroundColor:this.props.post.color}}>
         <div className="social-post-title">{this.props.post.title}</div>
