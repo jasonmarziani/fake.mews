@@ -30,13 +30,13 @@ class App extends Component {
     }
 
     var choices = [this.props.posts[0], this.props.posts[1]];
-    var startLeft = [this.props.posts[5]];
-    var startRight = [this.props.posts[6]];
+    //var startLeft = [this.props.posts[5]];
+    //var startRight = [this.props.posts[6]];
 
     this.state = {
       choices: choices,
-      leftPosts:startLeft,
-      rightPosts:startRight,
+      leftPosts:[],
+      rightPosts:[],
       scoreLeft:0,
       scoreRight:0
     };
