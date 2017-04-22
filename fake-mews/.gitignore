@@ -9,7 +9,7 @@
 # production
 /build
 
-/art/_inspiration/
+/art/_inspiration
 
 # misc
 .DS_Store
