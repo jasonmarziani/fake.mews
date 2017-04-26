@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Grid, Row, Column} from 'react-cellblock';
 import SocialPost from './SocialPost';
 import SwapAndChoose from './SwapAndChoose';
 
@@ -39,9 +40,15 @@ class SocialPostOptions extends Component
     console.log("** "+this.state.choices[1].title);
     return (
       <div>
-      <SocialPost post={this.state.choices[0]} key={this.generateKey()} /><br/>
+      <Column width="1/3">
+      <SocialPost post={this.state.choices[0]} key={this.generateKey()} reactions={false}/>
+      </Column>
+      <Column width="1/3">
       <SwapAndChoose onSwap={this.handleSwap} onCommit={this.handleCommit} />
-      <SocialPost post={this.state.choices[1]} key={this.generateKey()} /><br/>
+      </Column>
+      <Column width="1/3">
+      <SocialPost post={this.state.choices[1]} key={this.generateKey()} reactions={false}/>
+      </Column>
       </div>
     );
   }

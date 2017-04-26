@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-// TODO: Lay in the icons from Game Jam
+import {Grid, Row, Column} from 'react-cellblock';
 
 class Meter extends Component
 {
@@ -33,8 +32,13 @@ class Meter extends Component
     ];
   }
 
+  isCat()
+  {
+    return (this.props.type == "cat");
+  }
+
   render() {
-    var transitions = (this.props.type == "cat")? this.catTransitions : this.dogTransitions;
+    var transitions = (this.isCat())? this.catTransitions : this.dogTransitions;
     var val = this.props.value;
     var bcolor = transitions[0].color;
     var img = transitions[0].img;
@@ -46,10 +50,29 @@ class Meter extends Component
         img = t.img;
       }
     }
+    // OVERRIDE THE ABOVE LOGIC
+    img = (this.isCat())? "imgs/cat-stock/online-cat-17431660.jpg" :
+                          "imgs/dog-stock/savvy-dog-using-computer-laptop-24633273.jpg";
+
+    var bar1 = (val > 0)? "meter-bar-on" : "meter-bar-off";
+    var bar2 = (val > 10)? "meter-bar-on" : "meter-bar-off";
+    var bar3 = (val > 20)? "meter-bar-on" : "meter-bar-off";
+    var bar4 = (val > 30)? "meter-bar-on" : "meter-bar-off";
+    var bar5 = (val > 40)? "meter-bar-on" : "meter-bar-off";
 
     return (
-      <div className="meter" style={{backgroundColor:bcolor}}>
-        <img src={img} alt={this.props.type} /> {this.props.value}
+      <div className="meter">
+      <Grid>
+      <Row>
+      <Column width="4/10"><img src={img} alt={this.props.type}/></Column>
+      <Column width="1/10" className={bar1}></Column>
+      <Column width="1/10" className={bar2}></Column>
+      <Column width="1/10" className={bar3}></Column>
+      <Column width="1/10" className={bar4}></Column>
+      <Column width="1/10" className={bar5}></Column>
+      <Column width="1/10"></Column>
+      </Row>
+      </Grid>
       </div>
     );
   }
