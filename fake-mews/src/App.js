@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import SocialPost from './SocialPost';
 import SocialPostOptions from './SocialPostOptions'
 import Meter from './Meter';
+import Money from './Money';
 import './App.css';
 import './Game.css';
 
@@ -30,13 +31,11 @@ class App extends Component {
     }
 
     var choices = [this.props.posts[0], this.props.posts[1]];
-    var startLeft = [this.props.posts[5]];
-    var startRight = [this.props.posts[6]];
 
     this.state = {
+      leftActive:null,
+      rightActive:null,
       choices: choices,
-      leftPosts:startLeft,
-      rightPosts:startRight,
       scoreLeft:0,
       scoreRight:0
     };
@@ -51,6 +50,10 @@ class App extends Component {
     if(this.checkEndgame(scoreRight, scoreLeft))
     {
       console.log("GAME OVER");
+      this.setState(prevState => ({
+        scoreLeft:0,
+        scoreRight:0
+      }));
       return;
     }
 
@@ -59,8 +62,8 @@ class App extends Component {
     var choices = [options[0], options[1]];
 
     this.setState(prevState => ({
-      leftPosts: [choice0, ...this.state.leftPosts],
-      rightPosts: [choice1, ...this.state.rightPosts],
+      leftActive:choice0,
+      rightActive:choice1,
       choices:choices,
       scoreLeft:scoreLeft,
       scoreRight:scoreRight
@@ -74,6 +77,8 @@ class App extends Component {
     if(scoreLeft <= min || scoreLeft >= max || scoreRight <= min || scoreRight >= max) return true;
     return false;
   }
+
+  // HELPERS
 
   generateKey(){
     return Math.random();
@@ -97,41 +102,47 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </div>
-        <div className="App-body">
-          <Grid>
-            <Row>
-            <Column width="1/3">
-              {this.state.leftPosts.map(post => (
-                  <SocialPost post={post} key={this.generateKey()}/>
-                ))}
-            </Column>
-            <Column width="1/3">
-              <SocialPostOptions choices={this.state.choices} commit={this.handleCommit}/>
-            </Column>
-            <Column width="1/3">
-            { this.state.rightPosts.map(post => (
-                <SocialPost post={post} key={this.generateKey()} />
-              )) }
-            </Column>
-          </Row>
-        </Grid>
-      </div>
-      <div className="App-footer">
         <Grid>
           <Row>
           <Column width="1/3">
             <Meter value={this.state.scoreLeft} type="cat" />
           </Column>
-          <Column width="1/3"></Column>
+          <Column width="1/3"><img src={logo} className="App-logo" alt="logo" /></Column>
           <Column width="1/3">
             <Meter value={this.state.scoreRight} type="dog" />
           </Column>
           </Row>
         </Grid>
+        </div>
+        <div className="App-body">
+          <Grid>
+          <Row>
+            <SocialPostOptions choices={this.state.choices} commit={this.handleCommit}/>
+          </Row>
+          <Row>
+            <Column width="1/3">
+            { this.state.leftActive != null &&
+                <SocialPost post={this.state.leftActive} key={this.generateKey()} reactions={true} context="cat" />
+            }
+            </Column>
+            <Column width="1/3">
+              <Money leftValue={this.state.scoreLeft} rightValue={this.state.scoreRight} />
+            </Column>
+            <Column width="1/3">
+              { this.state.rightActive != null &&
+                <SocialPost post={this.state.rightActive} key={this.generateKey()} reactions={true} context="dog" />
+              }
+            </Column>
+          </Row>
+        </Grid>
       </div>
-
+      <div className="App-footer">
+      <Grid><Row>
+      <Column width="1/3"></Column>
+      <Column width="1/3">Text to vote or browse to vote?</Column>
+      <Column width="1/3"></Column>
+      </Row></Grid>
+      </div>
   </div>
     );
   }

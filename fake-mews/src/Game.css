@@ -1,7 +1,6 @@
 .social-post {
   background-color: #EAEAEA;
   color: white;
-  height: 150px;
   margin:10px 0;
   text-align: left;
   padding: 10px;
@@ -13,18 +12,76 @@
   background-position: center center;
   background-size: cover;
   border: 1px #EEE solid;
-  height: 80%;
+  height: 135px;
   overflow: hidden;
 }
 
 .social-post-title
 {
   width:100%;
+  margin:13px 0 10px 0;
+  font-size: 1.45em;
+}
+
+.social-post-likes
+{
+  margin: 2px 0 5px 0;
+  padding: 2px 0 5px 0;
+  height: 20px;
+}
+
+.social-post-likes img
+{
+  float:left;
+  height: 25px;
+  margin: 0 4px 0 0;
+}
+
+.social-post-time
+{
+  font-size: 0.75em;
+  color: #d1d1d1;
+}
+
+.social-post-sharedBy
+{
+  padding:3px 0 3px 0;
 }
 
 .meter{
   background-color: #EAEAEA;
-  height: 150px;
+  height: 80px;
+}
+
+.meter img
+{
+  height: 80px;
+  /* border-radius: 50%; */
+}
+
+.meter-bar-on
+{
+  margin:1px;
+  height: 76px;
+  background-color:red;
+}
+
+.meter-bar-off
+{
+  margin:1px;
+  height: 76px;
+  background-color:white;
+}
+
+.swap-choose
+{
+  margin:20px 0 0 0;
+}
+
+.swap-choose button
+{
+  width:100%;
+  height: 75px;
 }
 
 .timer

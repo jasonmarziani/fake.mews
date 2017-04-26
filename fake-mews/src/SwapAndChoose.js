@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import {Grid, Row, Column} from 'react-cellblock';
 import Timer from './Timer';
-
-// TODO: Pass in timer?
+import SwapButton from './SwapButton';
+import CommitButton from './CommitButton';
 
 class SwapAndChoose extends Component
 {
+  constructor(props) {
+    super(props);
+    this.useTimer = true;
+  }
+
+  handleCommit = () => {
+    this.props.onCommit();
+    this.forceUpdate();
+  }
 
   render() {
     return (
-      <Grid>
-      <Row>
-      <Column width="1/8" />
-      <Column width="1/4"><button onClick={this.props.onSwap}>Swap</button></Column>
-      <Column width="1/4" ><Timer /></Column>
-      <Column width="1/4"><button onClick={this.props.onCommit}>Commit</button></Column>
-      <Column width="1/8" />
-      </Row>
-      </Grid>
+      <div className="swap-choose">
+      <div>{ this.useTimer && <Timer start={Date.now()} duration={15000} onComplete={this.props.onCommit} />}</div>
+      <SwapButton onSwap={this.props.onSwap} />
+      <CommitButton onCommit={this.props.onCommit} />
+      </div>
     );
   }
 }
