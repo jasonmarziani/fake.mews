@@ -54,16 +54,16 @@ class Meter extends Component
     img = (this.isCat())? "imgs/cat-stock/online-cat-17431660.jpg" :
                           "imgs/dog-stock/savvy-dog-using-computer-laptop-24633273.jpg";
 
-    var bar1 = (val > 0)? "meter-bar-on" : "meter-bar-off";
-    var bar2 = (val > 10)? "meter-bar-on" : "meter-bar-off";
-    var bar3 = (val > 20)? "meter-bar-on" : "meter-bar-off";
-    var bar4 = (val > 30)? "meter-bar-on" : "meter-bar-off";
-    var bar5 = (val > 40)? "meter-bar-on" : "meter-bar-off";
+    var bar1 = (val > 0)? "meter-bar-green" : "meter-bar-off";
+    var bar2 = (val > 10)? "meter-bar-yellow" : "meter-bar-off";
+    var bar3 = (val > 20)? "meter-bar-orange" : "meter-bar-off";
+    var bar4 = (val > 30)? "meter-bar-red" : "meter-bar-off";
+    var bar5 = (val > 40)? "meter-bar-red" : "meter-bar-off";
 
     return (
       <div className="meter">
       <Grid>
-      <Row>
+      <Row className="meter-bar">
       <Column width="4/10"><img src={img} alt={this.props.type}/></Column>
       <Column width="1/10" className={bar1}></Column>
       <Column width="1/10" className={bar2}></Column>

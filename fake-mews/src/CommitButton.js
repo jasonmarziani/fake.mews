@@ -26,7 +26,7 @@ class CommitButton extends Component
 
   render(){
     return (
-      <div><button onClick={this.handleVote}>Commit ({this.state.votes} out of {this.votesNeeded} votes)</button></div>
+      <div><button onClick={this.handleVote}>Keep ({this.state.votes} out of {this.votesNeeded} votes)</button></div>
     )
   }
 }

@@ -4,7 +4,8 @@
   margin:10px 0;
   text-align: left;
   padding: 10px;
-  animation: Post-bounce-in 300ms;
+  position: relative;
+  animation: Post-drop-in .8s;
 }
 
 .social-post-img
@@ -49,28 +50,55 @@
 }
 
 .meter{
-  background-color: #EAEAEA;
-  height: 80px;
+  background-color: #333;
+  height: 130px;
+  z-index: 10000;
 }
 
 .meter img
 {
-  height: 80px;
+  height: 110px;
   /* border-radius: 50%; */
 }
 
-.meter-bar-on
+.meter-bar
 {
-  margin:1px;
+  margin:20px 10px 0 10px;
+}
+
+.meter-bar-green
+{
+  margin: 1px;
+  height: 76px;
+  background-color:green;
+}
+
+.meter-bar-yellow
+{
+  margin: 1px;
+  height: 76px;
+  background-color:yellow;
+}
+
+.meter-bar-orange
+{
+  margin: 1px;
+  height: 76px;
+  background-color:orange;
+}
+
+.meter-bar-red
+{
+  margin: 1px;
   height: 76px;
   background-color:red;
 }
 
 .meter-bar-off
 {
-  margin:1px;
+  margin: 1px;
   height: 76px;
-  background-color:white;
+  background-color:#EEE;
 }
 
 .swap-choose
@@ -90,6 +118,12 @@
   color: white;
 }
 
+.money
+{
+  height:100%;
+  margin:70px 0 0 0;
+}
+
 
 /* ANIMATIONS */
 
@@ -105,5 +139,15 @@
   }
   100%{
     transform:scale(1);
+  }
+}
+
+@keyframes Post-drop-in
+{
+  0%{
+    top:-360px;
+  }
+  100%{
+    top:0px;
   }
 }

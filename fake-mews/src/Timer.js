@@ -37,7 +37,7 @@ class Timer extends Component
     //console.log("Seconds:"+seconds);
     return (
       <div className="timer">
-        <p>{seconds}</p>
+        <h1>{seconds}</h1>
       </div>
     );
   }
