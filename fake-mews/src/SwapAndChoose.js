@@ -18,9 +18,9 @@ class SwapAndChoose extends Component
   render() {
     return (
       <div className="swap-choose">
-      <div>{ this.useTimer && <Timer start={Date.now()} duration={15000} onComplete={this.props.onCommit} />}</div>
       <SwapButton onSwap={this.props.onSwap} />
       <CommitButton onCommit={this.props.onCommit} />
+        <div>{ this.useTimer && <Timer start={Date.now()} duration={15000} onComplete={this.props.onCommit} />}</div>
       </div>
     );
   }

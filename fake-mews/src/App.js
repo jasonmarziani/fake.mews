@@ -102,31 +102,30 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-        <Grid>
-          <Row>
-          <Column width="1/3">
-            <Meter value={this.state.scoreLeft} type="cat" />
-          </Column>
-          <Column width="1/3"><img src={logo} className="App-logo" alt="logo" /></Column>
-          <Column width="1/3">
-            <Meter value={this.state.scoreRight} type="dog" />
-          </Column>
-          </Row>
-        </Grid>
+        Here is the website to vote!
         </div>
         <div className="App-body">
           <Grid>
-          <Row>
+          <Row className="App-alg">
             <SocialPostOptions choices={this.state.choices} commit={this.handleCommit}/>
           </Row>
           <Row>
+            <Column width="1/3">
+              <Meter value={Math.abs(this.state.scoreLeft)} type="cat" />
+            </Column>
+            <Column width="1/3"><img src={logo} className="App-logo" alt="logo" /><br/><h1>Fake.Mews</h1></Column>
+            <Column width="1/3">
+              <Meter value={Math.abs(this.state.scoreRight)} type="dog" />
+            </Column>
+          </Row>
+          <Row className="App-social">
             <Column width="1/3">
             { this.state.leftActive != null &&
                 <SocialPost post={this.state.leftActive} key={this.generateKey()} reactions={true} context="cat" />
             }
             </Column>
             <Column width="1/3">
-              <Money leftValue={this.state.scoreLeft} rightValue={this.state.scoreRight} />
+              <Money leftValue={Math.abs(this.state.scoreLeft)} rightValue={Math.abs(this.state.scoreRight)} />
             </Column>
             <Column width="1/3">
               { this.state.rightActive != null &&
@@ -134,13 +133,13 @@ class App extends Component {
               }
             </Column>
           </Row>
-        </Grid>
-      </div>
+          </Grid>
+        </div>
       <div className="App-footer">
       <Grid><Row>
-      <Column width="1/3"></Column>
-      <Column width="1/3">Text to vote or browse to vote?</Column>
-      <Column width="1/3"></Column>
+      <Column width="1/5"></Column>
+      <Column width="3/5">The world has gone cats and dogs. You are their social algorithm.</Column>
+      <Column width="1/5"></Column>
       </Row></Grid>
       </div>
   </div>

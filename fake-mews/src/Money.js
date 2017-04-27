@@ -36,11 +36,12 @@ class Money extends Component
   render()
   {
     return(
-      <div>
+      <div className="money">
+      <h1>Ad Revenue</h1>
       <h1>${this.state.total}</h1>
       <h2>${this.sum} / second</h2>
-      Left: {this.props.leftValue}<br/>
-      Right: {this.props.rightValue}<br/>
+      Cats: ${this.props.leftValue} / sec<br/>
+      Dogs: ${this.props.rightValue} / sec<br/>
       </div>
     );
   }
