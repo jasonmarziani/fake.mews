@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyC-qHlgh-JikCqV0jhv-FLYbYDDR6CnGOc",
+        authDomain: "fake-mews.firebaseapp.com",
+        databaseURL: "https://fake-mews.firebaseio.com",
+        projectId: "fake-mews",
+        storageBucket: "fake-mews.appspot.com",
+        messagingSenderId: "906007474374"
+      };
+      firebase.initializeApp(config);
+      var keepRef = firebase.database().ref('votes/keep');
+      var swapRef = firebase.database().ref('votes/swap');
+      var playersRef = firebase.database().ref('players/');
+
+      playersRef.on('value', function(snapshot)
+      {
+        var playerCount = snapshot.val();
+        console.log("Players: "+playerCount);
+        document.getElementById("players").innerHTML = playerCount+" Playing";
+      });
+
+      keepRef.on('value', function(snapshot)
+      {
+        var keepCount = snapshot.val();
+        console.log("Keep: "+keepCount);
+        document.getElementById("keep-btn").innerHTML = "Keep: "+keepCount;
+      });
+
+      swapRef.on('value', function(snapshot)
+      {
+        var swapCount = snapshot.val();
+        console.log("Swap: "+swapCount);
+        document.getElementById("swap-btn").innerHTML = "Swap: "+swapCount;
+      });
+
+      // writes
+      function keep() {
+        console.log("KEEP ACTION");
+        keepRef.transaction(function(value) {
+          return value + 1;
+            //document.getElementById("keep-btn").innerHTML = "Keep: "+tally;
+        });
+      }
+
+      function swap() {
+        console.log("SWAP ACTION");
+        swapRef.transaction(function(value) {
+          return value + 1;
+            //document.getElementById("swap-btn").innerHTML = "Swap: "+tally;
+        });
+      }
+
+      function addPlayer(){
+        console.log("ADD PLAYER");
+        playersRef.transaction(function(value) {
+          if(value==null) return value + 2;
+          return value + 1;
+            //document.getElementById("swap-btn").innerHTML = "Swap: "+tally;
+        });
+      }
+
+      function removePlayer()
+      {
+        console.log("REMOVE PLAYER");
+        playersRef.transaction(function(value) {
+          return Math.max(0, value - 1);
+            //document.getElementById("swap-btn").innerHTML = "Swap: "+tally;
+        });
+      }
+      window.onunload = window.onbeforeunload = removePlayer;
+
+      function reset()
+      {
+        swapRef.transaction(function(value) { return 0;});
+        keepRef.transaction(function(value) { return 0;});
+      }
+
+    </script>
+  </head>
+  <body onload="addPlayer()" onunload="removePlayer()">
+    <div>
+      <button id="keep-btn" type="button" onclick="keep()">Keep</button>
+      <button id="swap-btn" type="button" onclick="swap()">Swap</button>
+      <div id="players">Players</div>
+      <button id="swap-btn" type="button" onclick="reset()">Reset</button>
+    </div>
+    <div>
+
+    </div>
+  </body>
+</html>
