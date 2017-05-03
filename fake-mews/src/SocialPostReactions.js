@@ -21,7 +21,7 @@ class SocialPostReactions extends Component {
                               "We need to stop this."];
 
     this.state = {
-      reaction:this.randomStatement()
+      reactions:[this.randomStatement()]
     }
   }
 
@@ -35,9 +35,9 @@ class SocialPostReactions extends Component {
 
   tick = () =>
   {
-    this.setState({
-      reaction:this.randomStatement()
-    });
+    this.setState(prevState => ({
+      reactions:[this.randomStatement(), ...prevState.reactions]
+    }));
   }
 
   IsPositive()
@@ -53,8 +53,10 @@ class SocialPostReactions extends Component {
   }
 
   render() {
-
-    return(<div className="social-post-likes"><img src={this.props.icon} />{this.state.reaction}</div>);
+    const itemsToRender = this.state.reactions.map((item,i) => [<img src={this.props.icon} />,<li key={i}>{item}</li>]);
+    return(<div className="social-post-likes">
+          <ul>{itemsToRender}</ul>
+          </div>);
   }
 
 }

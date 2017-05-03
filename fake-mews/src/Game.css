@@ -24,18 +24,25 @@
   font-size: 1.45em;
 }
 
-.social-post-likes
-{
-  margin: 2px 0 5px 0;
-  padding: 2px 0 5px 0;
-  height: 20px;
-}
-
 .social-post-likes img
 {
   float:left;
   height: 25px;
   margin: 0 4px 0 0;
+}
+
+.social-post-likes ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.social-post-likes li
+{
+  margin: 2px 0 5px 0;
+  padding: 2px 0 5px 0;
+  background-color: rgba(22, 22, 22, 0.5);
 }
 
 .social-post-time
@@ -49,8 +56,19 @@
   padding:3px 0 3px 0;
 }
 
+.action-button img
+{
+  width:64px;
+}
+
+.marque
+{
+  width:1500px;
+  animation: marque 30s linear infinite;
+}
+
 .meter{
-  background-color: #333;
+  /* background-color: #333; */
   height: 130px;
   z-index: 10000;
 }
@@ -63,7 +81,20 @@
 
 .meter-bar
 {
-  margin:20px 10px 0 10px;
+  margin:20px 0px;
+}
+
+.meter-bar-right
+{
+  margin:20px 0px;
+}
+
+
+.meter-bar-off
+{
+  margin: 1px;
+  height: 76px;
+  background-color:#CACACA;
 }
 
 .meter-bar-green
@@ -94,13 +125,6 @@
   background-color:red;
 }
 
-.meter-bar-off
-{
-  margin: 1px;
-  height: 76px;
-  background-color:#EEE;
-}
-
 .swap-choose
 {
   margin:20px 0 0 0;
@@ -120,9 +144,13 @@
 
 .money
 {
+  -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: yellow;
   height:100%;
   margin:70px 0 0 0;
-  background-color:#eee;
+  padding: 20px;
+  background:rgba(220,220,220,0.9) url('https://media.giphy.com/media/3o6gDWzmAzrpi5DQU8/giphy.gif') no-repeat center center;
 }
 
 
@@ -151,4 +179,14 @@
   100%{
     top:0px;
   }
+}
+
+@keyframes marque
+{
+    0%{
+      transform:translateX(100%);
+    }
+    100%{
+      transform: translateX(-100%);
+    }
 }

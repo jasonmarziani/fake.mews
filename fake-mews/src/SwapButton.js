@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import database from './firebase/Firebase';
 
 class SwapButton extends Component
 {
   constructor(props) {
     super(props);
-    this.votesNeeded = 5;
+    this.votesNeeded = 3;
     this.state = {
-      votes:0
+      votes:this.props.votes
     }
+  }
+
+  componentWillMount()
+  {
+    this.swapRef = database.ref('votes/swap');
+    this.swapRef.on('value', (snapshot) => {
+      this.setState({votes:snapshot.val()});
+    });
   }
 
   handleVote = () =>
@@ -15,6 +24,7 @@ class SwapButton extends Component
     this.setState(prevState => ({
       votes:prevState.votes + 1
     }));
+
     if(this.state.votes >= this.votesNeeded-1)
     {
       this.props.onSwap();
@@ -26,7 +36,12 @@ class SwapButton extends Component
 
   render(){
     return (
-      <div><button onClick={this.handleVote}>Swap ({this.state.votes} / {this.votesNeeded} votes)</button></div>
+      <div className="action-button">
+        <button onClick={this.handleVote}>
+          <img src="imgs/ui/swap-icon.png" alt="swap icon" />
+            <h2>Swap Species ({this.state.votes} / {this.votesNeeded} votes)</h2>
+        </button>
+      </div>
     )
   }
 }

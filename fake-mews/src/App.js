@@ -50,6 +50,10 @@ class App extends Component {
     if(this.checkEndgame(scoreRight, scoreLeft))
     {
       console.log("GAME OVER");
+      //TODO: Stop timer
+      // Set values to high scores
+      // SHOW GAME OVER
+
       this.setState(prevState => ({
         scoreLeft:0,
         scoreRight:0
@@ -138,7 +142,7 @@ class App extends Component {
       <div className="App-footer">
       <Grid><Row>
       <Column width="1/5"></Column>
-      <Column width="3/5">The world has gone cats and dogs. You are their social algorithm.</Column>
+      <Column width="3/5"><div className="marque">The world has gone cats and dogs. You are their social algorithm. Welcome to Fake.Mews. Game Design by Jason Marziani and David Machov, with Jake OBrian. Developed by Jason Marziani. Prototype 2.1</div></Column>
       <Column width="1/5"></Column>
       </Row></Grid>
       </div>

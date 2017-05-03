@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import database from './firebase/Firebase';
 
 class CommitButton extends Component
 {
@@ -6,8 +7,16 @@ class CommitButton extends Component
     super(props);
     this.votesNeeded = 3;
     this.state = {
-      votes:0
+      votes:this.props.votes
     }
+  }
+
+  componentWillMount()
+  {
+    this.keepRef = database.ref('votes/keep');
+    this.keepRef.on('value', (snapshot) => {
+      this.setState({votes:snapshot.val()});
+    });
   }
 
   handleVote = () =>
@@ -15,6 +24,7 @@ class CommitButton extends Component
     this.setState(prevState => ({
       votes:prevState.votes + 1
     }));
+
     if(this.state.votes >= this.votesNeeded-1)
     {
       this.props.onCommit();
@@ -26,7 +36,12 @@ class CommitButton extends Component
 
   render(){
     return (
-      <div><button onClick={this.handleVote}>Keep ({this.state.votes} out of {this.votesNeeded} votes)</button></div>
+      <div className="action-button">
+        <button onClick={this.handleVote}>
+          <img src="imgs/ui/keep-icon.png" alt="keep icon" />
+            <h2>Share ({this.state.votes} out of {this.votesNeeded} votes)</h2>
+        </button>
+      </div>
     )
   }
 }

@@ -50,7 +50,8 @@ html, body {
 
 .App-alg
 {
-  background:#eef url("/imgs/ui/binary-bg.jpg");
+  /*background:#eef url("/imgs/ui/binary-bg.jpg");*/
+  background:#eef url("https://media.giphy.com/media/Nhz1hUtcTnukU/giphy.gif");
 }
 
 .App-social

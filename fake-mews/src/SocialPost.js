@@ -51,16 +51,17 @@ class SocialPost extends Component {
   render() {
     var whichIcon = (this.isCat)? this.CatIcon() : this.DogIcon();
     var sentiment = (this.isCat)? this.IsCatPositive() : this.IsDogPositive();
-    return (
-      <div className="social-post" style={{backgroundColor:this.props.post.color}}>
-        {this.sharedBy}
 
-        <div className="social-post-title">{this.props.post.title}</div>
-        <div className="social-post-img" style={{backgroundImage:'url(' + this.props.post.img + ')',}}></div>
-        {this.props.reactions &&
+    return (
+        <div className="social-post" style={{backgroundColor:this.props.post.color}}>
+          {this.sharedBy}
+          <div className="social-post-title">{this.props.post.title}</div>
+          <div className="social-post-img" style={{backgroundImage:'url(' + this.props.post.img + ')'}}>
+          {this.props.reactions &&
           <SocialPostReactions icon={whichIcon} sentiment={sentiment} />}
-      </div>
-    );
+          </div>
+        </div>
+      );
   }
 }
 
