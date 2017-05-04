@@ -84,7 +84,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-        Here is the website to vote!
+        Vote Now! https://goo.gl/FHh9xw
         </div>
         <div className="App-body">
           <Grid>
@@ -95,7 +95,7 @@ class App extends Component {
             <Column width="1/3">
               <Meter value={Math.abs(this.state.scoreLeft)} type="cat" />
             </Column>
-            <Column width="1/3"><img src={logo} className="App-logo" alt="logo" /><h1>Fake.Mews</h1></Column>
+            <Column width="1/3"><img src={logo} className="App-logo" alt="logo" /><h1>Fake.Mews</h1><p>Vote Now! https://goo.gl/FHh9xw</p></Column>
             <Column width="1/3">
               <Meter value={Math.abs(this.state.scoreRight)} type="dog" />
             </Column>

@@ -49,14 +49,13 @@ html, body {
 
 .App-alg
 {
-  /*background:#eef url("/imgs/ui/binary-bg.jpg");*/
   background:#eef url("https://media.giphy.com/media/Nhz1hUtcTnukU/giphy.gif");
 }
 
 .App-social
 {
   background-color:#fee;
-  background:#eef url("/imgs/ui/cash-bg.jpg");
+  background:#eef url("https://dl.dropboxusercontent.com/u/6244/fakemews/cash-bg.jpg");
 }
 
 .App-footer

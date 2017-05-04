@@ -17,6 +17,10 @@ class SwapButton extends Component
     this.swapRef.on('value', (snapshot) => {
       this.setState({votes:snapshot.val()});
     });
+    this.neededRef = database.ref('votes/swaps-needed');
+    this.neededRef.on('value', (snapshot) => {
+      this.votesNeeded = snapshot.val();
+    });
   }
 
   componentDidUpdate(prevProps, prevState)

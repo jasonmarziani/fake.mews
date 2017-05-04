@@ -17,6 +17,10 @@ class CommitButton extends Component
     this.keepRef.on('value', (snapshot) => {
       this.setState({votes:snapshot.val()});
     });
+    this.neededRef = database.ref('votes/keeps-needed');
+    this.neededRef.on('value', (snapshot) => {
+      this.votesNeeded = snapshot.val();
+    });
   }
 
   componentDidUpdate(prevProps, prevState)
