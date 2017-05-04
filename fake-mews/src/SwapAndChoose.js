@@ -12,14 +12,18 @@ class SwapAndChoose extends Component
 
   handleCommit = () => {
     this.props.onCommit();
-    this.forceUpdate();
   }
+
+  handleSwap = () => {
+    this.props.onSwap();
+  }
+  // TODO: SET UP VOTES AS PROPS TO RESET TO 0 WHEN OFFLINE?
 
   render() {
     return (
       <div className="swap-choose">
-      <SwapButton onSwap={this.props.onSwap} />
-      <CommitButton onCommit={this.props.onCommit} />
+      <SwapButton onSwap={this.props.onSwap} votes="0" />
+      <CommitButton onCommit={this.props.onCommit} votes="0" />
         <div>{ this.useTimer && <Timer start={Date.now()} duration={15000} onComplete={this.props.onCommit} />}</div>
       </div>
     );

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {Grid, Row, Column} from 'react-cellblock';
 import SocialPost from './SocialPost';
 import SwapAndChoose from './SwapAndChoose';
-
-// TODO: Manage timer to maintain state across swaps?
+import database from './firebase/Firebase';
 
 class SocialPostOptions extends Component
 {
@@ -21,14 +20,27 @@ class SocialPostOptions extends Component
     }
   }
 
+  resetVotes(){
+    var keepRef = database.ref('votes/keep');
+    keepRef.transaction(function(value) {
+      return 0;
+    });
+    var swapRef = database.ref('votes/swap');
+    swapRef.transaction(function(value) {
+      return 0;
+    });
+  }
+
   handleSwap = () =>{
+    this.resetVotes();
     this.setState(prevState => ({
       choices: [this.state.choices[1], this.state.choices[0]]
     }));
   }
 
   handleCommit = () =>{
-   this.props.commit(this.state.choices);
+    this.resetVotes();
+    this.props.commit(this.state.choices);
   };
 
   generateKey(){

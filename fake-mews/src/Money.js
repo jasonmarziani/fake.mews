@@ -40,8 +40,8 @@ class Money extends Component
       <h1>Ad Revenue</h1>
       <h1>${this.state.total}</h1>
       <h2>${this.sum} / second</h2>
-      Cats: ${this.props.leftValue} / sec<br/>
-      Dogs: ${this.props.rightValue} / sec<br/>
+      <h3>Cats: ${this.props.leftValue} / sec</h3>
+      <h3>Dogs: ${this.props.rightValue} / sec</h3>
       </div>
     );
   }

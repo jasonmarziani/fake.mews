@@ -1,27 +1,13 @@
 import React, { Component } from 'react';
+import Icons from './Data/Icons'
+import Reactions from './Data/Reactions'
 
 class SocialPostReactions extends Component {
 
   constructor(props) {
     super(props);
-    this.positiveReactions = ["OMG!",
-                              "Wowzers!",
-                              "LOL",
-                              "Love it!",
-                              "Moar please",
-                              "Please share.",
-                              "100 100 100"];
-
-    this.negativeReactions = ["OMG!",
-                              "Not even",
-                              "I can't",
-                              "This isn't real, is it?",
-                              "I'm dead I died",
-                              "No no no.",
-                              "We need to stop this."];
-
     this.state = {
-      reaction:this.randomStatement()
+      reactions:[this.randomReaction()]
     }
   }
 
@@ -35,9 +21,9 @@ class SocialPostReactions extends Component {
 
   tick = () =>
   {
-    this.setState({
-      reaction:this.randomStatement()
-    });
+    this.setState(prevState => ({
+      reactions:[this.randomReaction(), ...prevState.reactions]
+    }));
   }
 
   IsPositive()
@@ -45,16 +31,26 @@ class SocialPostReactions extends Component {
     return this.props.positive;
   }
 
+  randomReaction()
+  {
+    return {icon:this.randomIcon(), statement:this.randomStatement()};
+  }
+
   randomStatement()
   {
-    var array = (this.props.sentiment)? this.positiveReactions : this.negativeReactions;
-    var index = Math.round(Math.random()*(array.length-1));
-    return array[index];
+    return Reactions.Random(this.props.sentiment);
+  }
+
+  randomIcon()
+  {
+    return (this.props.context == "cat")? Icons.RandomCatIcon() : Icons.RandomDogIcon();
   }
 
   render() {
-
-    return(<div className="social-post-likes"><img src={this.props.icon} />{this.state.reaction}</div>);
+    const itemsToRender = this.state.reactions.map((item,i) => [<img src={item.icon} />,<li key={i}>{item.statement}</li>]);
+    return(<div className="social-post-likes">
+          <ul>{itemsToRender}</ul>
+          </div>);
   }
 
 }

@@ -50,31 +50,56 @@ class Meter extends Component
         img = t.img;
       }
     }
-    // OVERRIDE THE ABOVE LOGIC
-    img = (this.isCat())? "imgs/cat-stock/online-cat-17431660.jpg" :
-                          "imgs/dog-stock/savvy-dog-using-computer-laptop-24633273.jpg";
 
-    var bar1 = (val > 0)? "meter-bar-green" : "meter-bar-off";
+    img = (this.isCat())? "https://media.giphy.com/media/heIX5HfWgEYlW/giphy.gif" :
+                          "https://media.giphy.com/media/kudIERso2pFiE/giphy.gif";
+
+//https://media.giphy.com/media/k35G9KUEH9Acw/giphy.gif
+//https://media.giphy.com/media/UuIom9saJP5eg/giphy.gif
+
+//https://media.giphy.com/media/SwImQhtiNA7io/giphy.gif
+//https://media.giphy.com/media/ChpOyeacGmpQk/giphy.gif
+
+    var bar1 = (val >= 0)? "meter-bar-green" : "meter-bar-off";
     var bar2 = (val > 10)? "meter-bar-yellow" : "meter-bar-off";
     var bar3 = (val > 20)? "meter-bar-orange" : "meter-bar-off";
     var bar4 = (val > 30)? "meter-bar-red" : "meter-bar-off";
     var bar5 = (val > 40)? "meter-bar-red" : "meter-bar-off";
 
-    return (
-      <div className="meter">
-      <Grid>
-      <Row className="meter-bar">
-      <Column width="4/10"><img src={img} alt={this.props.type}/></Column>
-      <Column width="1/10" className={bar1}></Column>
-      <Column width="1/10" className={bar2}></Column>
-      <Column width="1/10" className={bar3}></Column>
-      <Column width="1/10" className={bar4}></Column>
-      <Column width="1/10" className={bar5}></Column>
-      <Column width="1/10"></Column>
-      </Row>
-      </Grid>
-      </div>
-    );
+    if(this.isCat()){
+      // CAT
+      return (
+        <div className="meter">
+        <Grid>
+        <Row className="meter-bar">
+        <Column width="4/10"><img src={img} alt={this.props.type}/></Column>
+        <Column width="1/10" className={bar1}></Column>
+        <Column width="1/10" className={bar2}></Column>
+        <Column width="1/10" className={bar3}></Column>
+        <Column width="1/10" className={bar4}></Column>
+        <Column width="1/10" className={bar5}></Column>
+        </Row>
+        </Grid>
+        </div>
+      );
+    }else{
+      // DOG
+      return (
+        <div className="meter">
+        <Grid>
+        <Row className="meter-bar-right">
+        <Column width="1/10" className={bar5}></Column>
+        <Column width="1/10" className={bar4}></Column>
+        <Column width="1/10" className={bar3}></Column>
+        <Column width="1/10" className={bar2}></Column>
+        <Column width="1/10" className={bar1}></Column>
+        <Column width="4/10"><img src={img} alt={this.props.type}/></Column>
+        </Row>
+        </Grid>
+        </div>
+      );
+    }
+
   }
 }
 
