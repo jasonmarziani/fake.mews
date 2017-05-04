@@ -5,7 +5,7 @@ class SwapButton extends Component
 {
   constructor(props) {
     super(props);
-    this.votesNeeded = 3;
+    this.votesNeeded = 5;
     this.state = {
       votes:this.props.votes
     }
@@ -19,13 +19,25 @@ class SwapButton extends Component
     });
   }
 
+  componentDidUpdate(prevProps, prevState)
+  {
+    this.checkVoteCount();
+  }
+
+
   handleVote = () =>
   {
     this.setState(prevState => ({
       votes:prevState.votes + 1
     }));
+    this.swapRef.transaction(function(value) {
+      return value + 1;
+    });
+  }
 
-    if(this.state.votes >= this.votesNeeded-1)
+  checkVoteCount()
+  {
+    if(this.state.votes >= this.votesNeeded)
     {
       this.props.onSwap();
       this.setState({

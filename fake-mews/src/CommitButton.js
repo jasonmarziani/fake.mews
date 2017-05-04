@@ -5,7 +5,7 @@ class CommitButton extends Component
 {
   constructor(props) {
     super(props);
-    this.votesNeeded = 3;
+    this.votesNeeded = 5;
     this.state = {
       votes:this.props.votes
     }
@@ -19,13 +19,25 @@ class CommitButton extends Component
     });
   }
 
+  componentDidUpdate(prevProps, prevState)
+  {
+    this.checkVoteCount();
+  }
+
   handleVote = () =>
   {
     this.setState(prevState => ({
       votes:prevState.votes + 1
     }));
+    this.keepRef.transaction(function(value) {
+      return value + 1;
+    });
+  }
 
-    if(this.state.votes >= this.votesNeeded-1)
+  checkVoteCount()
+  {
+    console.log("VOTES? "+this.state.votes);
+    if(this.state.votes >= this.votesNeeded)
     {
       this.props.onCommit();
       this.setState({

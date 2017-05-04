@@ -50,19 +50,17 @@ class Meter extends Component
         img = t.img;
       }
     }
-    /*
-    img = (this.isCat())? "imgs/cat-stock/online-cat-17431660-2.jpg" :
-                          "imgs/dog-stock/savvy-dog-using-computer-laptop-24633273-2.jpg";
-                          */
+
     img = (this.isCat())? "https://media.giphy.com/media/heIX5HfWgEYlW/giphy.gif" :
                           "https://media.giphy.com/media/kudIERso2pFiE/giphy.gif";
+
 //https://media.giphy.com/media/k35G9KUEH9Acw/giphy.gif
 //https://media.giphy.com/media/UuIom9saJP5eg/giphy.gif
 
 //https://media.giphy.com/media/SwImQhtiNA7io/giphy.gif
 //https://media.giphy.com/media/ChpOyeacGmpQk/giphy.gif
 
-    var bar1 = (val > 0)? "meter-bar-green" : "meter-bar-off";
+    var bar1 = (val >= 0)? "meter-bar-green" : "meter-bar-off";
     var bar2 = (val > 10)? "meter-bar-yellow" : "meter-bar-off";
     var bar3 = (val > 20)? "meter-bar-orange" : "meter-bar-off";
     var bar4 = (val > 30)? "meter-bar-red" : "meter-bar-off";

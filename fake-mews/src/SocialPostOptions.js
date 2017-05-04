@@ -4,8 +4,6 @@ import SocialPost from './SocialPost';
 import SwapAndChoose from './SwapAndChoose';
 import database from './firebase/Firebase';
 
-// TODO: Manage timer to maintain state across swaps?
-
 class SocialPostOptions extends Component
 {
 

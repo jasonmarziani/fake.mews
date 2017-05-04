@@ -1,7 +1,7 @@
 .social-post {
   background-color: #EAEAEA;
   color: white;
-  margin:10px 0;
+  margin:8px 0;
   text-align: left;
   padding: 10px;
   position: relative;
@@ -27,7 +27,7 @@
 .social-post-likes img
 {
   float:left;
-  height: 25px;
+  height: 35px;
   margin: 0 4px 0 0;
 }
 
@@ -40,6 +40,7 @@
 
 .social-post-likes li
 {
+  height: 35px;
   margin: 2px 0 5px 0;
   padding: 2px 0 5px 0;
   background-color: rgba(22, 22, 22, 0.5);
@@ -63,8 +64,9 @@
 
 .marque
 {
-  width:1500px;
-  animation: marque 30s linear infinite;
+  width:2200px;
+  line-height: 200%;
+  animation: marque 40s linear infinite;
 }
 
 .meter{
@@ -81,12 +83,12 @@
 
 .meter-bar
 {
-  margin:20px 0px;
+  margin:10px 0px;
 }
 
 .meter-bar-right
 {
-  margin:20px 0px;
+  margin:10px 0px;
 }
 
 
@@ -153,6 +155,25 @@
   background:rgba(220,220,220,0.9) url('https://media.giphy.com/media/3o6gDWzmAzrpi5DQU8/giphy.gif') no-repeat center center;
 }
 
+
+.gameover{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:10100;
+}
+
+.gameover-off
+{
+  display:none;
+}
+
+.gameover-on
+{
+  display:block;
+}
 
 /* ANIMATIONS */
 
